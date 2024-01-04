@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iKu16tZlRl5+RnLWuE0dP62b0EDEShFZ9vDHb6EGGoI1Wkf1" crossorigin="anonymous">
+    <!-- Include your custom styles here -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Expense Tracker</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Expense</h5>
+                        <form id="expenseForm">
+                            <div class="mb-3">
+                                <label for="expenseName" class="form-label">Expense Name</label>
+                                <input type="text" class="form-control" id="expenseName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="expenseAmount" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="expenseAmount" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Expense</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Expense List</h5>
+                        <ul class="list-group" id="expenseList">
+                            <!-- Expense items will be dynamically added here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eaQgFccZMj6R4Hn6En4Lb7gybHaGdjQg6VQpiD61xpkFIIJ3Wruxm6F5z/yoC2EM" crossorigin="anonymous"></script>
+    <!-- Include your custom scripts here -->
+    <script>
+        document.getElementById('expenseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get form values
+            var expenseName = document.getElementById('expenseName').value;
+            var expenseAmount = document.getElementById('expenseAmount').value;
+
+            // Validate and add the expense to the list
+            if (expenseName && expenseAmount) {
+                var expenseList = document.getElementById('expenseList');
+                var listItem = document.createElement('li');
+                listItem.classList.add('list-group-item');
+                listItem.innerHTML = `<strong>${expenseName}</strong>: $${expenseAmount}`;
+                expenseList.appendChild(listItem);
+
+                // Clear the form
+                document.getElementById('expenseForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>
