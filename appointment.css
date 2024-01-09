@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 5rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, button {
+    margin-top: 5px;
+    padding: 8px;
+}
+
+small {
+    color: #777;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
