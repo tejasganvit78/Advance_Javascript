@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #app {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #totalBill {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2>Restaurant App</h2>
+
+        <label for="table">Select Table:</label>
+        <select id="table">
+            <option value="table1">Table 1</option>
+            <option value="table2">Table 2</option>
+            <option value="table3">Table 3</option>
+        </select>
+
+        <label for="food">Select Food:</label>
+        <select id="food">
+            <option value="burger">Burger - $10</option>
+            <option value="pizza">Pizza - $12</option>
+            <option value="pasta">Pasta - $8</option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="1" min="1">
+
+        <button onclick="addToBill()">Add to Bill</button>
+
+        <div id="totalBill">Total Bill: $0</div>
+
+        <div id="orderHistory">
+            <h3>Order History</h3>
+            <ul id="orderList"></ul>
+        </div>
+    </div>
+
+    <script>
+        let totalBill = 0;
+        const orderHistory = [];
+
+        function addToBill() {
+            const table = document.getElementById("table").value;
+            const food = document.getElementById("food").value;
+            const quantity = parseInt(document.getElementById("quantity").value);
+
+            let price;
+            switch (food) {
+                case "burger":
+                    price = 10;
+                    break;
+                case "pizza":
+                    price = 12;
+                    break;
+                case "pasta":
+                    price = 8;
+                    break;
+                default:
+                    price = 0;
+            }
+
+            const itemTotal = price * quantity;
+            totalBill += itemTotal;
+
+            document.getElementById("totalBill").innerText = `Total Bill: $${totalBill}`;
+
+            // Update order history
+            const orderDetails = `${table}: ${quantity} ${food}(s) - $${itemTotal}`;
+            orderHistory.push(orderDetails);
+
+            // Display order history
+            const orderList = document.getElementById("orderList");
+            const listItem = document.createElement("li");
+            listItem.textContent = orderDetails;
+            orderList.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
